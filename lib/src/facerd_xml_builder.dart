@@ -3,6 +3,7 @@ String buildPidOptionsXml({
   String language = 'en',
   String pidVer = '2.0',
   String env = 'P',
+  String otp ='',
 
   // OPTIONAL (for iOS headless mode)
   String? auaCode,
@@ -15,7 +16,7 @@ String buildPidOptionsXml({
   buffer.writeln('<PidOptions ver="1.0" env="$env">');
 
   buffer.writeln(
-    '  <Opts format="0" pidVer="$pidVer" otp="" wadh="" />',
+    '  <Opts format="0" pidVer="$pidVer" otp="$otp" wadh="" />',
   );
 
   buffer.writeln('  <CustOpts>');
