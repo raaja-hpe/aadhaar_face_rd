@@ -67,6 +67,34 @@ class AadhaarFaceRdPlugin :
         }
 
         val intent = Intent("in.gov.uidai.rdservice.face.CAPTURE")
+        intent.putExtra("S.request", xml)
+        act.startActivityForResult(intent, REQUEST_CODE)
+        result.success(true)
+      }
+
+      "launchlocalFaceMatch" -> {
+        val xml = call.argument<String>("xml") ?: ""
+
+        if (!isFaceRDInstalled()) {
+          result.error(
+            "FACE_RD_NOT_INSTALLED",
+            "Aadhaar FaceRD app is not installed",
+            null
+          )
+          return
+        }
+
+        val act = activity
+        if (act == null) {
+          result.error(
+            "NO_ACTIVITY",
+            "No active Activity to launch FaceRD",
+            null
+          )
+          return
+        }
+
+        val intent = Intent("in.gov.uidai.rdservice.face.LOCAL_FACE_MATCH")
         intent.putExtra("request", xml)
         act.startActivityForResult(intent, REQUEST_CODE)
         result.success(true)
