@@ -36,6 +36,16 @@ class AadhaarFaceRd {
     });
   }
 
+  /// Launch LocalFaceMatch app
+  Future<void> launchLocalFaceMatch({
+    required String pidOptionsXml,
+    String iosScheme = "face_rddemo",
+  }) async {
+    await _channel.invokeMethod("launchlocalFaceMatch", {
+      "xml": pidOptionsXml,
+    });
+  }
+
   void dispose() {
     _controller.close();
   }
